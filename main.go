@@ -27,9 +27,10 @@ func main() {
 	dbHost := os.Getenv("DB_HOST")
 	dbPort := os.Getenv("DB_PORT")
 	dbUser := os.Getenv("DB_USERNAME")
+	dbPass := os.Getenv("DB_PASSWORD")
 	dbName := os.Getenv("DB_NAME")
 
-	dbURL := fmt.Sprintf("%s:@tcp(%s:%s)/%s?parseTime=true", dbUser, dbHost, dbPort, dbName)
+	dbURL := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?parseTime=true", dbUser, dbPass, dbHost, dbPort, dbName)
 
 	db, err := gorm.Open(mysql.Open(dbURL), &gorm.Config{})
 	if err != nil {
